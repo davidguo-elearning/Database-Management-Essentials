@@ -1,0 +1,59 @@
+SELECT EventPlan.eventno,EventRequest.dateheld,COUNT(EventPlan.eventno)
+FROM EventRequest
+INNER JOIN EventPlan
+ON EventRequest.eventno = EventPlan.eventno
+WHERE EventPlan.workdate Between '1-December-2013' AND '31-December-2013' 
+GROUP BY EventPlan.eventno,EventRequest.dateheld
+HAVING COUNT(EventPlan.eventno) > 1 
+ 
+ 
+SELECT EventPlan.planno,EventPlan.eventno,EventPlan.workdate,EventPlan.activity
+FROM EventPlan
+INNER JOIN EventRequest
+ON EventRequest.eventno = EventPlan.eventno
+INNER JOIN FACILITY
+ON EventRequest.FACNO = FACILITY.FACNO
+WHERE EventPlan.workdate Between '1-December-2013' AND '31-December-2013' 
+AND FACILITY.FACNAME ='Basketball arena'
+
+
+SELECT EventRequest.eventno,EventRequest.dateheld,EventRequest.status,EventRequest.estcost
+FROM EventRequest
+INNER JOIN EventPlan
+ON EventRequest.eventno = EventPlan.eventno
+INNER JOIN Employee
+ON EventPlan.empno = Employee.empno
+INNER JOIN FACILITY
+ON EventRequest.FACNO = FACILITY.FACNO
+WHERE Employee.empname = 'Mary Manager' 
+AND FACILITY.FACNAME ='Basketball arena'
+AND EventPlan.workdate Between '1-October-2013' AND '31-December-2013' 
+
+
+SELECT EventPlanLine.PlanNo,EventPlanLine.LineNo,ResourceTbl.resname,EventPlanLine.NumberFld,
+        Location.locname,EventPlanLine.TimeStart,EventPlanLine.TimeEnd
+FROM EventPlanLine
+INNER JOIN ResourceTbl
+ON EventPlanLine.ResNo = ResourceTbl.ResNo
+INNER JOIN Location
+ON EventPlanLine.LocNo = Location.LocNo
+INNER JOIN EventPlan
+ON EventPlanLine.PlanNo = EventPlan.PlanNo
+INNER JOIN FACILITY
+ON FACILITY.FACNO = Location.FACNO
+WHERE EventPlan.activity = 'Operation'
+AND FACILITY.FACNAME ='Basketball arena'
+AND EventPlan.workdate Between '1-October-2013' AND '31-December-2013' 
+
+INSERT INTO FACILITY(FACNO,FACNAME) VALUES ('F104','Swimming Pool')
+
+INSERT INTO Location VALUES('L107','F104','Door')
+
+INSERT INTO Location VALUES('L108','F104','Locker Room')
+
+UPDATE Location
+SET locname = 'Gate'
+WHERE locname ='Door
+
+DELETE FROM Location
+WHERE locname ='Locker Room'
