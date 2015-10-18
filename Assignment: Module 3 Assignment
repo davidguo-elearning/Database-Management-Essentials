@@ -1,4 +1,4 @@
- CREATE TABLE Customer 
+CREATE TABLE Customer 
 (CustNo VARCHAR2(8) CONSTRAINT CustNoNotNull NOT NULL, 
  CustName VARCHAR2(30) CONSTRAINT CustNameNotNull NOT NULL, 
  Address VARCHAR2(50) CONSTRAINT AddressNotNull NOT NULL, 
@@ -31,7 +31,7 @@ CREATE TABLE Employee
  Empname VARCHAR2(30) CONSTRAINT EmpNameNotNull NOT NULL, 
  Department VARCHAR2(50) CONSTRAINT DeptNotNull NOT NULL, 
  Email VARCHAR2(30) CONSTRAINT EmailNotNull NOT NULL, 
- Phone  VARCHAR2(30) CONSTRAINT EmpNameNotNull NOT NULL, 
+ Phone  VARCHAR2(30) CONSTRAINT PhoneNotNull NOT NULL, 
   CONSTRAINT PK_EMPLOYEE PRIMARY KEY (Empno)
  ) ;
 
@@ -105,6 +105,3 @@ CREATE TABLE EventPlanLine
                   REFERENCES ResourceTbl(Resno), 
   CONSTRAINT CK_TIMEPERIOD CHECK (TimeStart<TimeEnd)
  ) ;
-
- 
-
