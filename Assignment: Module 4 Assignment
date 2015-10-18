@@ -1,0 +1,27 @@
+SELECT distinct city, state, zip 
+FROM Customer
+
+SELECT empname,department,phone,email 
+FROM employee 
+where phone like '3-%';
+
+SELECT * 
+FROM ResourceTbl
+WHERE rate BETWEEN 10 AND 20 ORDER BY rate;
+
+SELECT eventno,dateauth,status 
+FROM EventRequest
+WHERE (status = 'Approved' or status ='Denied') 
+  AND (dateauth BETWEEN '1-July-2013' and '31-July-2013');
+
+
+SELECT locno,locname
+FROM Location
+INNER JOIN Facility
+ON Location.facno = Location.facno
+WHERE facname = 'Basketball arena';
+
+
+SELECT planno, count(LineNo), sum(NumberFld)
+FROM EventPlanLine
+GROUP BY planno;
